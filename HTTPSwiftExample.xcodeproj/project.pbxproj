@@ -12,6 +12,8 @@
 		B67483E01ACA2D6800A9970E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B67483DE1ACA2D6800A9970E /* Main.storyboard */; };
 		B67483E21ACA2D6800A9970E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B67483E11ACA2D6800A9970E /* Images.xcassets */; };
 		B67483E51ACA2D6800A9970E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B67483E31ACA2D6800A9970E /* LaunchScreen.xib */; };
+		B68A10681FABAC9700B89471 /* CMLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68A10671FABAC9700B89471 /* CMLViewController.swift */; };
+		B68A106C1FABB0E100B89471 /* RandomForestAccel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B68A106B1FABB0E100B89471 /* RandomForestAccel.mlmodel */; };
 		B694B01A1FA377E4009A4277 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B694B0191FA377E4009A4277 /* RingBuffer.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		B67483E41ACA2D6800A9970E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B67483EF1ACA2D6800A9970E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B67483F01ACA2D6800A9970E /* HTTPSwiftExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPSwiftExampleTests.swift; sourceTree = "<group>"; };
+		B68A10671FABAC9700B89471 /* CMLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMLViewController.swift; sourceTree = "<group>"; };
+		B68A106B1FABB0E100B89471 /* RandomForestAccel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RandomForestAccel.mlmodel; sourceTree = "<group>"; };
 		B694B0191FA377E4009A4277 /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,9 +63,11 @@
 		B67483D71ACA2D6800A9970E /* HTTPSwiftExample */ = {
 			isa = PBXGroup;
 			children = (
+				B68A106B1FABB0E100B89471 /* RandomForestAccel.mlmodel */,
 				B67483DA1ACA2D6800A9970E /* AppDelegate.swift */,
-				B67483DC1ACA2D6800A9970E /* ViewController.swift */,
 				B694B0191FA377E4009A4277 /* RingBuffer.swift */,
+				B67483DC1ACA2D6800A9970E /* ViewController.swift */,
+				B68A10671FABAC9700B89471 /* CMLViewController.swift */,
 				B67483DE1ACA2D6800A9970E /* Main.storyboard */,
 				B67483E11ACA2D6800A9970E /* Images.xcassets */,
 				B67483E31ACA2D6800A9970E /* LaunchScreen.xib */,
@@ -167,7 +173,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B68A106C1FABB0E100B89471 /* RandomForestAccel.mlmodel in Sources */,
 				B67483DD1ACA2D6800A9970E /* ViewController.swift in Sources */,
+				B68A10681FABAC9700B89471 /* CMLViewController.swift in Sources */,
 				B67483DB1ACA2D6800A9970E /* AppDelegate.swift in Sources */,
 				B694B01A1FA377E4009A4277 /* RingBuffer.swift in Sources */,
 			);

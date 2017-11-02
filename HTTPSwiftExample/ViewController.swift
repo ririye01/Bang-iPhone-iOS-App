@@ -15,7 +15,7 @@
 //    ifconfig |grep inet   
 // to see what your public facing IP address is, the ip address can be used here
 //let SERVER_URL = "http://erics-macbook-pro.local:8000" // change this for your server name!!!
-let SERVER_URL = "http://10.8.116.92:8000" // change this for your server name!!!
+let SERVER_URL = "http://10.0.1.48:8000" // change this for your server name!!!
 
 import UIKit
 import CoreMotion
@@ -345,20 +345,20 @@ class ViewController: UIViewController, URLSessionDelegate {
         request.httpBody = requestBody
         
         let postTask : URLSessionDataTask = self.session.dataTask(with: request,
-                                                                  completionHandler:{(data, response, error) in
-                                                                    if(error != nil){
-                                                                        if let res = response{
-                                                                            print("Response:\n",res)
-                                                                        }
-                                                                    }
-                                                                    else{
-                                                                        let jsonDictionary = self.convertDataToDictionary(with: data)
-                                                                        
-                                                                        let labelResponse = jsonDictionary["prediction"]!
-                                                                        print(labelResponse)
-                                                                        self.displayLabelResponse(labelResponse as! String)
+                  completionHandler:{(data, response, error) in
+                    if(error != nil){
+                        if let res = response{
+                            print("Response:\n",res)
+                        }
+                    }
+                    else{
+                        let jsonDictionary = self.convertDataToDictionary(with: data)
+                        
+                        let labelResponse = jsonDictionary["prediction"]!
+                        print(labelResponse)
+                        self.displayLabelResponse(labelResponse as! String)
 
-                                                                    }
+                    }
                                                                     
         })
         

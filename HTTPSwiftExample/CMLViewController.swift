@@ -30,7 +30,9 @@ class CMLViewController: UIViewController {
     @IBOutlet weak var leftArrow: UILabel!
     @IBOutlet weak var largeMotionMagnitude: UIProgressView!
     
-    var model = RandomForestAccel()
+    var modelRf = RandomForestAccel()
+    var modelSvm = SVMAccel()
+    var modelPipe = PipeAccel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,14 +84,31 @@ class CMLViewController: UIViewController {
             self.isWaitingForMotionData = false
             //predict a label
             let seq = toMLMultiArray(self.ringBuffer.getDataAsVector())
-            guard let output = try? model.prediction(input: seq) else {
+            guard let outputRf = try? modelRf.prediction(input: seq) else {
                 fatalError("Unexpected runtime error.")
             }
             
-            displayLabelResponse(output.classLabel)
+            guard let outputSvm = try? modelSvm.prediction(input: seq) else {
+                fatalError("Unexpected runtime error.")
+            }
             
-            // dont predict again for a bit
+            guard let outputPipe = try? modelPipe.prediction(input: seq) else {
+                fatalError("Unexpected runtime error.")
+            }
+            displayLabelResponse(outputPipe.classLabel)
             setDelayedWaitingToTrue(2.0)
+            
+//            if(outputRf.classLabel == outputSvm.classLabel){
+//                displayLabelResponse(outputSvm.classLabel)
+//                // dont predict again for a bit
+//                setDelayedWaitingToTrue(2.0)
+//            }
+//            else{
+//                displayLabelResponse("Unknown")
+//                self.isWaitingForMotionData = true
+//            }
+            
+            
             
         }
     }

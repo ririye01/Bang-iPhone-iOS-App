@@ -95,7 +95,7 @@ class CMLViewController: UIViewController {
             guard let outputPipe = try? modelPipe.prediction(input: seq) else {
                 fatalError("Unexpected runtime error.")
             }
-            displayLabelResponse(outputPipe.classLabel)
+            displayLabelResponse(outputRf.classLabel)
             setDelayedWaitingToTrue(2.0)
             
 //            if(outputRf.classLabel == outputSvm.classLabel){

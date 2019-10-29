@@ -164,12 +164,6 @@
 						DevelopmentTeam = F69WJ27LN4;
 						LastSwiftMigration = 0810;
 					};
-					B67483E91ACA2D6800A9970E = {
-						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = F69WJ27LN4;
-						LastSwiftMigration = 0810;
-						TestTargetID = B67483D41ACA2D6800A9970E;
-					};
 				};
 			};
 			buildConfigurationList = B67483D01ACA2D6800A9970E /* Build configuration list for PBXProject "HTTPSwiftExample" */;
@@ -186,7 +180,6 @@
 			projectRoot = "";
 			targets = (
 				B67483D41ACA2D6800A9970E /* HTTPSwiftExample */,
-				B67483E91ACA2D6800A9970E /* HTTPSwiftExampleTests */,
 			);
 		};
 /* End PBXProject section */

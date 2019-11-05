@@ -15,7 +15,7 @@
 //    ifconfig |grep inet   
 // to see what your public facing IP address is, the ip address can be used here
 //let SERVER_URL = "http://erics-macbook-pro.local:8000" // change this for your server name!!!
-let SERVER_URL = "http://10.8.116.82:8000" // change this for your server name!!!
+let SERVER_URL = "http://10.8.127.54:8000" // change this for your server name!!!
 
 import UIKit
 
@@ -115,7 +115,8 @@ class ViewController: UIViewController, URLSessionDelegate {
         var request = URLRequest(url: postUrl!)
         
         // data to send in body of post request (send arguments as json)
-        let jsonUpload:NSDictionary = ["arg":[3.2,self.floatValue*2,self.floatValue]]
+        let jsonUpload:NSDictionary = ["arg":
+            [3.2,self.floatValue*2,self.floatValue] ]
         
         
         let requestBody:Data? = self.convertDictionaryToData(with:jsonUpload)

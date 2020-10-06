@@ -33,6 +33,7 @@ class CMLViewController: UIViewController {
     var modelRf = RandomForestAccel()
     var modelSvm = SVMAccel()
     var modelPipe = PipeAccel()
+    var modelGrad = GradientAccel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,32 +85,51 @@ class CMLViewController: UIViewController {
             self.isWaitingForMotionData = false
             //predict a label
             let seq = toMLMultiArray(self.ringBuffer.getDataAsVector())
+            
             guard let outputRf = try? modelRf.prediction(input: seq) else {
                 fatalError("Unexpected runtime error.")
             }
             
+            
             guard let outputSvm = try? modelSvm.prediction(input: seq) else {
                 fatalError("Unexpected runtime error.")
             }
-            
+
             guard let outputPipe = try? modelPipe.prediction(input: seq) else {
                 fatalError("Unexpected runtime error.")
             }
-            displayLabelResponse(outputRf.classLabel)
+            
+            guard let outputGrad = try? modelGrad.prediction(input: seq) else {
+                fatalError("Unexpected runtime error.")
+            }
+            
+            
+            var hash = ["up":0,
+                        "down":0,
+                        "left":0,
+                        "right":0
+            ]
+            
+            for clf in [outputRf.classLabel,
+                        outputSvm.classLabel,
+                        outputPipe.classLabel,
+                        outputGrad.classLabel,
+                ]{
+                    hash[clf]! += 1
+            }
+            
+            var classLabel = ""
+            var maxClass = 0
+            
+            for (key,val) in hash {
+                if maxClass<val {
+                    maxClass = val
+                    classLabel = key
+                }
+            }
+            
+            displayLabelResponse(classLabel)
             setDelayedWaitingToTrue(2.0)
-            
-//            if(outputRf.classLabel == outputSvm.classLabel){
-//                displayLabelResponse(outputSvm.classLabel)
-//                // dont predict again for a bit
-//                setDelayedWaitingToTrue(2.0)
-//            }
-//            else{
-//                displayLabelResponse("Unknown")
-//                self.isWaitingForMotionData = true
-//            }
-            
-            
-            
         }
     }
     

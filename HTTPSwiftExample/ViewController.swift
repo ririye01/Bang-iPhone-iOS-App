@@ -15,7 +15,7 @@
 //    ifconfig |grep inet   
 // to see what your public facing IP address is, the ip address can be used here
 //let SERVER_URL = "http://erics-macbook-pro.local:8000" // change this for your server name!!!
-let SERVER_URL = "http://10.8.127.54:8000" // change this for your server name!!!
+let SERVER_URL = "http://10.0.1.6:8000" // change this for your server name!!!
 
 import UIKit
 
@@ -43,8 +43,8 @@ class ViewController: UIViewController, URLSessionDelegate {
             delegateQueue:self.operationQueue)
         
         // create reusable animation
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        animation.type = kCATransitionReveal
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.reveal
         animation.duration = 0.5
         
         
@@ -161,6 +161,9 @@ class ViewController: UIViewController, URLSessionDelegate {
             
         } catch {
             print("json error: \(error.localizedDescription)")
+            if let strData = String(data:data!, encoding:String.Encoding(rawValue: String.Encoding.utf8.rawValue)){
+                print("printing JSON received as string: "+strData)
+            }
             return NSDictionary() // just return empty
         }
     }

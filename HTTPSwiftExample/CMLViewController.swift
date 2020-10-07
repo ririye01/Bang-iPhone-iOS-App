@@ -30,10 +30,7 @@ class CMLViewController: UIViewController {
     @IBOutlet weak var leftArrow: UILabel!
     @IBOutlet weak var largeMotionMagnitude: UIProgressView!
     
-    var modelRf = RandomForestAccel()
-    var modelSvm = SVMAccel()
-    var modelPipe = PipeAccel()
-    var modelGrad = GradientAccel()
+    var turiModel = TuriModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,49 +83,11 @@ class CMLViewController: UIViewController {
             //predict a label
             let seq = toMLMultiArray(self.ringBuffer.getDataAsVector())
             
-            guard let outputRf = try? modelRf.prediction(input: seq) else {
-                fatalError("Unexpected runtime error.")
-            }
-            
-            
-            guard let outputSvm = try? modelSvm.prediction(input: seq) else {
+            guard let outputTuri = try? turiModel.prediction(sequence: seq) else {
                 fatalError("Unexpected runtime error.")
             }
 
-            guard let outputPipe = try? modelPipe.prediction(input: seq) else {
-                fatalError("Unexpected runtime error.")
-            }
-            
-            guard let outputGrad = try? modelGrad.prediction(input: seq) else {
-                fatalError("Unexpected runtime error.")
-            }
-            
-            
-            var hash = ["up":0,
-                        "down":0,
-                        "left":0,
-                        "right":0
-            ]
-            
-            for clf in [outputRf.classLabel,
-                        outputSvm.classLabel,
-                        outputPipe.classLabel,
-                        outputGrad.classLabel,
-                ]{
-                    hash[clf]! += 1
-            }
-            
-            var classLabel = ""
-            var maxClass = 0
-            
-            for (key,val) in hash {
-                if maxClass<val {
-                    maxClass = val
-                    classLabel = key
-                }
-            }
-            
-            displayLabelResponse(classLabel)
+            displayLabelResponse(outputTuri.target)
             setDelayedWaitingToTrue(2.0)
         }
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6533877252D68850080DBF6 /* TuriModel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B6533876252D68850080DBF6 /* TuriModel.mlmodel */; };
 		B67483DB1ACA2D6800A9970E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67483DA1ACA2D6800A9970E /* AppDelegate.swift */; };
 		B67483DD1ACA2D6800A9970E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67483DC1ACA2D6800A9970E /* ViewController.swift */; };
 		B67483E01ACA2D6800A9970E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B67483DE1ACA2D6800A9970E /* Main.storyboard */; };
@@ -14,13 +15,10 @@
 		B67483E51ACA2D6800A9970E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B67483E31ACA2D6800A9970E /* LaunchScreen.xib */; };
 		B68A10681FABAC9700B89471 /* CMLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68A10671FABAC9700B89471 /* CMLViewController.swift */; };
 		B694B01A1FA377E4009A4277 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B694B0191FA377E4009A4277 /* RingBuffer.swift */; };
-		B6EF2BE3237B3C1F003DDE66 /* RandomForestAccel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B6EF2BDF237B3C1F003DDE66 /* RandomForestAccel.mlmodel */; };
-		B6EF2BE4237B3C1F003DDE66 /* SVMAccel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B6EF2BE0237B3C1F003DDE66 /* SVMAccel.mlmodel */; };
-		B6EF2BE5237B3C1F003DDE66 /* PipeAccel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B6EF2BE1237B3C1F003DDE66 /* PipeAccel.mlmodel */; };
-		B6EF2BE6237B3C1F003DDE66 /* GradientAccel.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = B6EF2BE2237B3C1F003DDE66 /* GradientAccel.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6533876252D68850080DBF6 /* TuriModel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TuriModel.mlmodel; sourceTree = "<group>"; };
 		B67483D51ACA2D6800A9970E /* HTTPSwiftExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTTPSwiftExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B67483D91ACA2D6800A9970E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B67483DA1ACA2D6800A9970E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -32,10 +30,6 @@
 		B67483F01ACA2D6800A9970E /* HTTPSwiftExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPSwiftExampleTests.swift; sourceTree = "<group>"; };
 		B68A10671FABAC9700B89471 /* CMLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMLViewController.swift; sourceTree = "<group>"; };
 		B694B0191FA377E4009A4277 /* RingBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingBuffer.swift; sourceTree = "<group>"; };
-		B6EF2BDF237B3C1F003DDE66 /* RandomForestAccel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = RandomForestAccel.mlmodel; path = ../../python_tornado_examples/tornado/RandomForestAccel.mlmodel; sourceTree = "<group>"; };
-		B6EF2BE0237B3C1F003DDE66 /* SVMAccel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = SVMAccel.mlmodel; path = ../../python_tornado_examples/tornado/SVMAccel.mlmodel; sourceTree = "<group>"; };
-		B6EF2BE1237B3C1F003DDE66 /* PipeAccel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = PipeAccel.mlmodel; path = ../../python_tornado_examples/tornado/PipeAccel.mlmodel; sourceTree = "<group>"; };
-		B6EF2BE2237B3C1F003DDE66 /* GradientAccel.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GradientAccel.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +63,7 @@
 		B67483D71ACA2D6800A9970E /* HTTPSwiftExample */ = {
 			isa = PBXGroup;
 			children = (
-				B6EF2BE2237B3C1F003DDE66 /* GradientAccel.mlmodel */,
-				B6EF2BE1237B3C1F003DDE66 /* PipeAccel.mlmodel */,
-				B6EF2BDF237B3C1F003DDE66 /* RandomForestAccel.mlmodel */,
-				B6EF2BE0237B3C1F003DDE66 /* SVMAccel.mlmodel */,
+				B6533876252D68850080DBF6 /* TuriModel.mlmodel */,
 				B67483DA1ACA2D6800A9970E /* AppDelegate.swift */,
 				B694B0191FA377E4009A4277 /* RingBuffer.swift */,
 				B67483DC1ACA2D6800A9970E /* ViewController.swift */,
@@ -136,13 +127,13 @@
 		B67483CD1ACA2D6800A9970E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Eric Larson";
 				TargetAttributes = {
 					B67483D41ACA2D6800A9970E = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = APD62CDC25;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 1200;
 					};
 				};
 			};
@@ -183,14 +174,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6EF2BE4237B3C1F003DDE66 /* SVMAccel.mlmodel in Sources */,
 				B67483DD1ACA2D6800A9970E /* ViewController.swift in Sources */,
-				B6EF2BE3237B3C1F003DDE66 /* RandomForestAccel.mlmodel in Sources */,
 				B68A10681FABAC9700B89471 /* CMLViewController.swift in Sources */,
 				B67483DB1ACA2D6800A9970E /* AppDelegate.swift in Sources */,
 				B694B01A1FA377E4009A4277 /* RingBuffer.swift in Sources */,
-				B6EF2BE5237B3C1F003DDE66 /* PipeAccel.mlmodel in Sources */,
-				B6EF2BE6237B3C1F003DDE66 /* GradientAccel.mlmodel in Sources */,
+				B6533877252D68850080DBF6 /* TuriModel.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +208,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -228,14 +217,17 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -260,7 +252,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -272,6 +264,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -280,14 +273,17 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -305,7 +301,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -319,11 +315,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = APD62CDC25;
 				INFOPLIST_FILE = HTTPSwiftExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SMU.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -333,11 +329,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = APD62CDC25;
 				INFOPLIST_FILE = HTTPSwiftExample/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SMU.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

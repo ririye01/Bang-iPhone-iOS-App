@@ -30,7 +30,15 @@ class CMLViewController: UIViewController {
     @IBOutlet weak var leftArrow: UILabel!
     @IBOutlet weak var largeMotionMagnitude: UIProgressView!
     
-    var turiModel = TuriModel()
+    lazy var turiModel:TuriModel = {
+        do{
+            let config = MLModelConfiguration()
+            return try TuriModel(configuration: config)
+        }catch{
+            print(error)
+            fatalError("Could not load custom model")
+        }
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()

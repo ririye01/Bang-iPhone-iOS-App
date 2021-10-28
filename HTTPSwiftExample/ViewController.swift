@@ -42,7 +42,7 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
         animation.type = CATransitionType.reveal
         animation.duration = 0.5
         
-        // be the deleagte for this text field
+        // be the delegate for this text field
         self.ipAddressTextView.delegate = self
         
     }
@@ -51,17 +51,32 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
     // if you do not know your local sharing server name try:
     //    ifconfig |grep inet
     // to see what your public facing IP address is, the ip address can be used here
-    var SERVER_URL = "http://10.8.97.109:8000" // change this for your server name!!!
+    var SERVER_URL = "http://10.8.127.99:8000" // change this for your server name!!!
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let ip = textField.text{
-            // todo: make sure ip is formatted correctly
-            SERVER_URL = "http://\(ip):8000"
-            print(SERVER_URL)
+            // make sure ip is formatted correctly
+            if matchIp(for:"((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}", in: ip){
+                SERVER_URL = "http://\(ip):8000"
+                print(SERVER_URL)
+            }else{
+                print("invalid ip entered")
+            }
+            
         }
         textField.resignFirstResponder()
         return true
     }
-    
+    func matchIp(for regex:String, in text:String)->(Bool){
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let results = regex.matches(in: text, range: NSRange(text.startIndex..., in: text))
+            if results.count > 0{return true}
+            
+        } catch _{
+            return false
+        }
+        return false
+    }
     
     
 
@@ -131,7 +146,8 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
         
         // data to send in body of post request (send arguments as json)
         let jsonUpload:NSDictionary = ["arg":
-            [3.2,self.floatValue*2,self.floatValue] ]
+            [3.2,self.floatValue*2,self.floatValue],
+                                       "arg2":["CoronaVirus","NO",2021]]
         
         
         let requestBody:Data? = self.convertDictionaryToData(with:jsonUpload)

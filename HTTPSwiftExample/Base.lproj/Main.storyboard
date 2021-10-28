@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,8 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q83-th-e1u">
-                                <rect key="frame" x="16" y="28" width="124" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q83-th-e1u">
+                                <rect key="frame" x="16" y="8" width="124" height="30"/>
                                 <state key="normal" title="Send Get Request">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -30,7 +28,7 @@
                                     <action selector="sendGetRequest:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="bFr-sd-tCK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXJ-SL-qGM">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXJ-SL-qGM">
                                 <rect key="frame" x="16" y="66" width="130" height="30"/>
                                 <state key="normal" title="Send Post Request">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -39,7 +37,7 @@
                                     <action selector="sendPostRequest:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YEd-mM-jkK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hnx-72-uCy">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hnx-72-uCy">
                                 <rect key="frame" x="16" y="104" width="146" height="30"/>
                                 <state key="normal" title="Send Post with JSON">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -50,16 +48,35 @@
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="No response from server" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="I7R-07-pqO">
                                 <rect key="frame" x="16" y="153" width="343" height="494"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter ip" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RMl-dk-NOv">
+                                <rect key="frame" x="211" y="6" width="108" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":8000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3q-E6-Qv5">
+                                <rect key="frame" x="320" y="14.5" width="39" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dh-yG-LB0">
+                                <rect key="frame" x="156" y="14.5" width="46" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="I7R-07-pqO" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="2AE-kH-6oW"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="I7R-07-pqO" secondAttribute="bottom" constant="20" id="5pK-hA-78x"/>
+                            <constraint firstItem="G3q-E6-Qv5" firstAttribute="leading" secondItem="RMl-dk-NOv" secondAttribute="trailing" constant="1" id="BH9-lK-gT9"/>
                             <constraint firstItem="hnx-72-uCy" firstAttribute="leading" secondItem="Q83-th-e1u" secondAttribute="leading" id="JWg-6I-vMG"/>
+                            <constraint firstItem="RMl-dk-NOv" firstAttribute="leading" secondItem="9Dh-yG-LB0" secondAttribute="trailing" constant="9" id="Pbh-rr-4qo"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hnx-72-uCy" secondAttribute="trailing" constant="20" symbolic="YES" id="SsP-kC-bQf"/>
                             <constraint firstItem="I7R-07-pqO" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="TlQ-am-o3L"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kXJ-SL-qGM" secondAttribute="trailing" constant="20" symbolic="YES" id="TyE-FT-2zL"/>
@@ -67,19 +84,25 @@
                             <constraint firstItem="hnx-72-uCy" firstAttribute="top" secondItem="kXJ-SL-qGM" secondAttribute="bottom" constant="8" symbolic="YES" id="UgK-H7-DDr"/>
                             <constraint firstItem="hnx-72-uCy" firstAttribute="leading" secondItem="I7R-07-pqO" secondAttribute="leading" id="WkB-OQ-lZK"/>
                             <constraint firstItem="I7R-07-pqO" firstAttribute="top" secondItem="hnx-72-uCy" secondAttribute="bottom" constant="19" id="Wy5-SB-4g0"/>
+                            <constraint firstItem="RMl-dk-NOv" firstAttribute="centerY" secondItem="9Dh-yG-LB0" secondAttribute="centerY" id="dDx-Kq-uaU"/>
                             <constraint firstItem="I7R-07-pqO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="ioU-ed-56v"/>
                             <constraint firstItem="hnx-72-uCy" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="104" id="j02-9G-dt2"/>
+                            <constraint firstItem="9Dh-yG-LB0" firstAttribute="leading" secondItem="Q83-th-e1u" secondAttribute="trailing" constant="16" id="p3e-5T-YLM"/>
                             <constraint firstItem="hnx-72-uCy" firstAttribute="leading" secondItem="kXJ-SL-qGM" secondAttribute="leading" id="pNL-na-EnT"/>
+                            <constraint firstItem="9Dh-yG-LB0" firstAttribute="centerY" secondItem="Q83-th-e1u" secondAttribute="centerY" id="tcn-tk-O1U"/>
                             <constraint firstItem="Q83-th-e1u" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="uM4-wo-hoQ"/>
+                            <constraint firstItem="G3q-E6-Qv5" firstAttribute="centerY" secondItem="RMl-dk-NOv" secondAttribute="centerY" id="xHj-So-lVC"/>
+                            <constraint firstItem="G3q-E6-Qv5" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="yrx-Do-tTP"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ipAddressTextView" destination="RMl-dk-NOv" id="1Ci-Lc-2fm"/>
                         <outlet property="mainTextView" destination="I7R-07-pqO" id="sEf-ID-vJd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="202.5" y="294.5"/>
+            <point key="canvasLocation" x="292" y="196.55172413793105"/>
         </scene>
     </scenes>
 </document>

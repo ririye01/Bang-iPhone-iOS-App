@@ -11,21 +11,16 @@
 //              from the course GitHub repository: tornado_bare, branch sklearn_example
 
 
-// if you do not know your local sharing server name try:
-//    ifconfig |grep inet   
-// to see what your public facing IP address is, the ip address can be used here
-//let SERVER_URL = "http://erics-macbook-pro.local:8000" // change this for your server name!!!
-let SERVER_URL = "http://10.8.97.109:8000" // change this for your server name!!!
 
 import UIKit
 
-class ViewController: UIViewController, URLSessionDelegate {
+class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate {
     
     var session = URLSession()
     var floatValue = 5.5
     let operationQueue = OperationQueue()
     @IBOutlet weak var mainTextView: UITextView!
-    
+    @IBOutlet weak var ipAddressTextView: UITextField!
     let animation = CATransition()
     
     override func viewDidLoad() {
@@ -42,13 +37,33 @@ class ViewController: UIViewController, URLSessionDelegate {
             delegate: self,
             delegateQueue:self.operationQueue)
         
-        // create reusable animation
+        // create reusable animation, for updating the server
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         animation.type = CATransitionType.reveal
         animation.duration = 0.5
         
+        // be the deleagte for this text field
+        self.ipAddressTextView.delegate = self
         
     }
+    
+    //MARK: Change IP Delegate
+    // if you do not know your local sharing server name try:
+    //    ifconfig |grep inet
+    // to see what your public facing IP address is, the ip address can be used here
+    var SERVER_URL = "http://10.8.97.109:8000" // change this for your server name!!!
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let ip = textField.text{
+            // todo: make sure ip is formatted correctly
+            SERVER_URL = "http://\(ip):8000"
+            print(SERVER_URL)
+        }
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+    
 
     //MARK: Get Request
     @IBAction func sendGetRequest(_ sender: AnyObject) {

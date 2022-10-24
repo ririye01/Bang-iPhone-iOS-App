@@ -51,7 +51,7 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
     // if you do not know your local sharing server name try:
     //    ifconfig |grep inet
     // to see what your public facing IP address is, the ip address can be used here
-    var SERVER_URL = "http://10.8.127.99:8000" // change this for your server name!!!
+    var SERVER_URL = "http://10.8.117.80:8000" // change this for your server name!!!
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let ip = textField.text{
             // make sure ip is formatted correctly

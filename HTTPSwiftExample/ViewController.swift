@@ -8,7 +8,7 @@
 
 // This exampe is meant to be run with the python example:
 //              tornado_example.py 
-//              from the course GitHub repository: tornado_bare, branch sklearn_example
+//              from the course GitHub repository: tornado_bare, branch turi_create_examples
 
 
 
@@ -16,34 +16,55 @@ import UIKit
 
 class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate {
     
-    var session = URLSession()
+    
     var floatValue = 5.5
     let operationQueue = OperationQueue()
     @IBOutlet weak var mainTextView: UITextView!
     @IBOutlet weak var ipAddressTextView: UITextField!
-    let animation = CATransition()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+    lazy var animation = {
+        let tmp = CATransition()
+        // create reusable animation, for updating the server
+        tmp.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        tmp.type = CATransitionType.reveal
+        tmp.duration = 0.5
+        return tmp
+    }()
+    
+    lazy var session = {
         let sessionConfig = URLSessionConfiguration.ephemeral
         
         sessionConfig.timeoutIntervalForRequest = 5.0
         sessionConfig.timeoutIntervalForResource = 8.0
         sessionConfig.httpMaximumConnectionsPerHost = 1
         
-        self.session = URLSession(configuration: sessionConfig,
+        let tmp = URLSession(configuration: sessionConfig,
             delegate: self,
             delegateQueue:self.operationQueue)
         
-        // create reusable animation, for updating the server
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        animation.type = CATransitionType.reveal
-        animation.duration = 0.5
+        return tmp
+        
+    }()
+    
+    lazy var SERVER_URL = {
+        //setup default server IP (if not entered by user)
+        let default_ip = "10.8.106.120"
+        let tmp = "http://\(default_ip):8000"
+        
+        DispatchQueue.main.async {
+            self.ipAddressTextView.text = default_ip
+        }
+        
+        return tmp
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
         
         // be the delegate for this text field
         self.ipAddressTextView.delegate = self
+        
         
     }
     
@@ -51,7 +72,7 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
     // if you do not know your local sharing server name try:
     //    ifconfig |grep inet
     // to see what your public facing IP address is, the ip address can be used here
-    var SERVER_URL = "http://10.8.117.80:8000" // change this for your server name!!!
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let ip = textField.text{
             // make sure ip is formatted correctly
@@ -66,18 +87,6 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
         textField.resignFirstResponder()
         return true
     }
-    func matchIp(for regex:String, in text:String)->(Bool){
-        do {
-            let regex = try NSRegularExpression(pattern: regex)
-            let results = regex.matches(in: text, range: NSRange(text.startIndex..., in: text))
-            if results.count > 0{return true}
-            
-        } catch _{
-            return false
-        }
-        return false
-    }
-    
     
 
     //MARK: Get Request
@@ -90,14 +99,13 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
         let request: URLRequest = URLRequest(url: getUrl!)
         let dataTask : URLSessionDataTask = self.session.dataTask(with: request,
             completionHandler:{(data, response, error) in
+            
                 // TODO: handle error!
-                print("Response:\n%@",response!)
+                print("Response:\n\(response!)")
                 let strData = String(data:data!, encoding:String.Encoding(rawValue: String.Encoding.utf8.rawValue))
                 
-                DispatchQueue.main.async{
-                    self.mainTextView.layer.add(self.animation, forKey: nil)
-                    self.mainTextView.text = "\(response!) \n==================\n\(strData!)"
-                }
+                self.displayMainTextView(response: response!,
+                                         strData: strData!)
         })
         
         dataTask.resume() // start the task
@@ -122,14 +130,13 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
         let postTask : URLSessionDataTask = self.session.dataTask(with: request,
             completionHandler:{(data, response, error) in
                 // TODO: handle error!
-                print("Response:\n%@",response!)
+                print("Response:\n\(response!)")
                 let jsonDictionary = self.convertDataToDictionary(with: data)
                 print("\n\nJSON Data:\n%@",jsonDictionary)
                 
-                DispatchQueue.main.async{
-                    self.mainTextView.layer.add(self.animation, forKey: nil)
-                    self.mainTextView.text = "\(response!) \n==================\n\(jsonDictionary)"
-                }
+                self.displayMainTextView(response: response!,
+                                         strData: jsonDictionary)
+
         })
         
         postTask.resume() // start the task
@@ -147,7 +154,9 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
         // data to send in body of post request (send arguments as json)
         let jsonUpload:NSDictionary = ["arg":
             [3.2,self.floatValue*2,self.floatValue],
-                                       "arg2":["CoronaVirus","NO",2021]]
+                        "arg2":["CoronaVirus","NO",2021],
+                        "arg3":["EricLarson","YES",2022]
+        ]
         
         
         let requestBody:Data? = self.convertDictionaryToData(with:jsonUpload)
@@ -157,22 +166,31 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
         
         let postTask : URLSessionDataTask = self.session.dataTask(with: request,
                         completionHandler:{(data, response, error) in
-                            print("Response:\n%@",response!)
-                            let jsonDictionary = self.convertDataToDictionary(with: data)
-                            print("\n\nJSON Data:\n%@",jsonDictionary)
+            print("Response:\n%@",response!)
+            let jsonDictionary = self.convertDataToDictionary(with: data)
+            print("\n\nJSON Data:\n%@",jsonDictionary)
                             
-                            DispatchQueue.main.async{
-                                self.mainTextView.layer.add(self.animation, forKey: nil)
-                                self.mainTextView.text = "\(response!) \n==================\n\(jsonDictionary)"
-                            }
+            self.displayMainTextView(response: response!,
+                                     strData: jsonDictionary)
+
         })
         
         postTask.resume() // start the task
         
     }
     
-    //MARK: JSON Conversion Functions
+    //MARK: Utility Functions
+    func displayMainTextView(response:Any, strData:Any){
+        // convenience function meant for displaying the response and the
+        // extra argument data from an HTTP request completion
+        DispatchQueue.main.async{
+            self.mainTextView.layer.add(self.animation, forKey: nil)
+            self.mainTextView.text = "\(response) \n==================\n\(strData)"
+        }
+    }
+    
     func convertDictionaryToData(with jsonUpload:NSDictionary) -> Data?{
+        // convenience function for serialiing an NSDictionary
         do { // try to make JSON and deal with errors using do/catch block
             let requestBody = try JSONSerialization.data(withJSONObject: jsonUpload, options:JSONSerialization.WritingOptions.prettyPrinted)
             return requestBody
@@ -183,6 +201,7 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
     }
     
     func convertDataToDictionary(with data:Data?)->NSDictionary{
+        // convenience function for getting Dictionary from server data
         do { // try to parse JSON and deal with errors using do/catch block
             let jsonDictionary: NSDictionary =
                 try JSONSerialization.jsonObject(with: data!,
@@ -197,6 +216,18 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
             }
             return NSDictionary() // just return empty
         }
+    }
+    
+    func matchIp(for regex:String, in text:String)->(Bool){
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let results = regex.matches(in: text, range: NSRange(text.startIndex..., in: text))
+            if results.count > 0{return true}
+            
+        } catch _{
+            return false
+        }
+        return false
     }
 
 }

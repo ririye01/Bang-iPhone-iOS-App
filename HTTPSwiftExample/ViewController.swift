@@ -14,20 +14,35 @@
 
 import UIKit
 
-class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate {
+class ViewController: UIViewController, URLSessionDelegate {
     
-    
+    //MARK: Properties
     var floatValue = 5.5
     let operationQueue = OperationQueue()
+    
+    //MARK: View Outlets
     @IBOutlet weak var mainTextView: UITextView!
     @IBOutlet weak var ipAddressTextView: UITextField!
     
+    //MARK: Lazy Computed Properties
     lazy var animation = {
         let tmp = CATransition()
         // create reusable animation, for updating the server
         tmp.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         tmp.type = CATransitionType.reveal
         tmp.duration = 0.5
+        return tmp
+    }()
+    
+    lazy var SERVER_URL = {
+        //setup default server IP (if not entered by user)
+        let default_ip = "10.9.191.61"
+        let tmp = "http://\(default_ip):8000"
+        
+        DispatchQueue.main.async {
+            self.ipAddressTextView.text = default_ip
+        }
+        
         return tmp
     }()
     
@@ -46,18 +61,8 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
         
     }()
     
-    lazy var SERVER_URL = {
-        //setup default server IP (if not entered by user)
-        let default_ip = "10.8.106.120"
-        let tmp = "http://\(default_ip):8000"
-        
-        DispatchQueue.main.async {
-            self.ipAddressTextView.text = default_ip
-        }
-        
-        return tmp
-    }()
     
+    //MARK: View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -66,26 +71,6 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
         self.ipAddressTextView.delegate = self
         
         
-    }
-    
-    //MARK: Change IP Delegate
-    // if you do not know your local sharing server name try:
-    //    ifconfig |grep inet
-    // to see what your public facing IP address is, the ip address can be used here
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let ip = textField.text{
-            // make sure ip is formatted correctly
-            if matchIp(for:"((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}", in: ip){
-                SERVER_URL = "http://\(ip):8000"
-                print(SERVER_URL)
-            }else{
-                print("invalid ip entered")
-            }
-            
-        }
-        textField.resignFirstResponder()
-        return true
     }
     
 
@@ -112,7 +97,7 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
         
     }
     
-    //MARK: Post Request, args in url
+    //MARK: Post Request, args as string in data
     @IBAction func sendPostRequest(_ sender: AnyObject) {
         
         let baseURL = "\(SERVER_URL)/DoPost"
@@ -152,13 +137,13 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
         var request = URLRequest(url: postUrl!)
         
         // data to send in body of post request (send arguments as json)
-        let jsonUpload:NSDictionary = ["arg":
-            [3.2,self.floatValue*2,self.floatValue],
-                        "arg2":["CoronaVirus","NO",2021],
-                        "arg3":["EricLarson","YES",2022]
+        let jsonUpload:NSDictionary = [
+            "arg": [3.2,self.floatValue*2,self.floatValue],
+            "arg2":["CoronaVirus","NO",2021] as [Any],
+            "arg3":["EricLarson","YES",2022] as [Any]
         ]
         
-        
+        // utility method to use from below
         let requestBody:Data? = self.convertDictionaryToData(with:jsonUpload)
     
         request.httpMethod = "POST"
@@ -178,8 +163,48 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
         postTask.resume() // start the task
         
     }
+
+}
+
+
+//MARK: TextFieldDelegate methods
+// if you do not know your local sharing server name try:
+//    ifconfig |grep inet
+// to see what your public facing IP address is, the ip address can be used here
+extension ViewController: UITextFieldDelegate{
     
-    //MARK: Utility Functions
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let ip = textField.text{
+            // make sure ip is formatted correctly
+            if matchIp(for:"((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}", in: ip){
+                SERVER_URL = "http://\(ip):8000"
+                print(SERVER_URL)
+            }else{
+                print("invalid ip entered")
+            }
+            
+        }
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func matchIp(for regex:String, in text:String)->(Bool){
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let results = regex.matches(in: text, range: NSRange(text.startIndex..., in: text))
+            if results.count > 0{return true}
+            
+        } catch _{
+            return false
+        }
+        return false
+    }
+}
+
+
+//MARK: Utility Extending Functions
+extension ViewController {
+    
     func displayMainTextView(response:Any, strData:Any){
         // convenience function meant for displaying the response and the
         // extra argument data from an HTTP request completion
@@ -217,22 +242,7 @@ class ViewController: UIViewController, URLSessionDelegate, UITextFieldDelegate 
             return NSDictionary() // just return empty
         }
     }
-    
-    func matchIp(for regex:String, in text:String)->(Bool){
-        do {
-            let regex = try NSRegularExpression(pattern: regex)
-            let results = regex.matches(in: text, range: NSRange(text.startIndex..., in: text))
-            if results.count > 0{return true}
-            
-        } catch _{
-            return false
-        }
-        return false
-    }
-
 }
-
-
 
 
 

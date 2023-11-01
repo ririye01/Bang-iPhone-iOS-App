@@ -8,14 +8,14 @@
 
 // This exampe is meant to be run with the python example:
 //              tornado_example.py 
-//              from the course GitHub repository: tornado_bare, branch sklearn_example
+//              from the course GitHub repository: tornado_bare, branch turi_create_mongo_six
 
 
 // if you do not know your local sharing server name try:
 //    ifconfig |grep inet   
 // to see what your public facing IP address is, the ip address can be used here
 //let SERVER_URL = "http://erics-macbook-pro.local:8000" // change this for your server name!!!
-let SERVER_URL = "http://10.8.117.80:8000" // change this for your server name!!!
+let SERVER_URL = "http://10.9.158.213:8000" // change this for your server name!!!
 
 import UIKit
 import CoreMotion

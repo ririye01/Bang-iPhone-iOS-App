@@ -140,7 +140,8 @@ class ViewController: UIViewController, URLSessionDelegate {
         let jsonUpload:NSDictionary = [
             "arg": [3.2,self.floatValue*2,self.floatValue],
             "arg2":["CoronaVirus","NO",2021] as [Any],
-            "arg3":["EricLarson","YES",2022] as [Any]
+            "arg3":["EricLarson","YES",2022] as [Any],
+            "arg4":["XDD","LM*O",2023] as [Any]
         ]
         
         // utility method to use from below

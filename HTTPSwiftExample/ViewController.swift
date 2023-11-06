@@ -56,6 +56,7 @@ class ViewController: UIViewController, URLSessionDelegate {
     @IBOutlet weak var downArrow: UILabel!
     @IBOutlet weak var leftArrow: UILabel!
     @IBOutlet weak var largeMotionMagnitude: UIProgressView!
+    @IBOutlet weak var DSIDStepper: UIStepper!
     
     // MARK: Class Properties with Observers
     enum CalibrationStage {
@@ -64,6 +65,11 @@ class ViewController: UIViewController, URLSessionDelegate {
         case right
         case down
         case left
+    }
+    
+    
+    @IBAction func setDSID(_ sender: UIStepper) {
+        self.dsid = Int(sender.value)
     }
     
     var calibrationStage:CalibrationStage = .notCalibrating {
@@ -280,7 +286,6 @@ class ViewController: UIViewController, URLSessionDelegate {
                         self.dsid = dsid as! Int
                     }
                 }
-                
         })
         
         dataTask.resume() // start the task

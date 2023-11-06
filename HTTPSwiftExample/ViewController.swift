@@ -133,6 +133,11 @@ class ViewController: UIViewController, URLSessionDelegate {
         self.magValue = Double(sender.value)
     }
     
+    @IBAction func setDsid(_ sender: UIStepper) {
+        self.dsid = Int(sender.value)
+    }
+    
+    
     // MARK: Core Motion Updates
     func startMotionUpdates(){
         // some internal inconsistency here: we need to ask the device manager for device

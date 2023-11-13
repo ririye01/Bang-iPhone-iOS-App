@@ -280,7 +280,7 @@ class ViewController: UIViewController, URLSessionDelegate {
                     let jsonDictionary = self.convertDataToDictionary(with: data)
                     
                     // This better be an integer
-                    if let dsid = jsonDictionary["dsid"]{
+                    if let dsid = jsonDictionary["dsid"] {
                         self.dsid = dsid as! Int
                     }
                 }
@@ -362,13 +362,10 @@ class ViewController: UIViewController, URLSessionDelegate {
                         }
                         else{ // no error we are aware of
                             let jsonDictionary = self.convertDataToDictionary(with: data)
-                            if !(jsonDictionary == nil) {
-                                print(jsonDictionary)
-                                let labelResponse = jsonDictionary["prediction"]!
-                                print(labelResponse)
-                                self.displayLabelResponse(labelResponse as! String)
-                            }
-
+                            
+                            let labelResponse = jsonDictionary["prediction"]!
+                            print(labelResponse)
+                            self.displayLabelResponse(labelResponse as! String)
                         }
                                                                     
         })

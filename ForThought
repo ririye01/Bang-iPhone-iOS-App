@@ -1,6 +1,6 @@
 1. Is the current method of saving the classifier blocking to the tornado IOLoop? Justify your response.
 
-  No. It is not formatted properly, which will block the loop.
+  Yes, because we aren't making it asynchronous.
 
 2. Would the models saved on one server be useable by another server if we migrated the saved
 documents in MongoDB? Justify your response

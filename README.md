@@ -1,4 +1,7 @@
 # Bang-iPhone-iOS-App
+
+See attachments in this branch for the required screenshot and video.
+
 1. Is the current method of saving the classifier blocking to the tornado IOLoop? Justify your response.
 
 If the current method of saving the classifier is not being executed in an asynchronous manner, it can indeed block the Tornado IOLoop. When performing a blocking operation within Tornado's main loop, it prevents the loop from doing anything else until the operation is complete. The proper approach in Tornado if we wanted to optimize runtime is to offload blocking operations to a thread pool or to use non-blocking libraries and the await keyword to handle the operation asynchronously. Asynchronous code is more difficult to write in Python than a language like Javascript, but not overwhelmingly so. 

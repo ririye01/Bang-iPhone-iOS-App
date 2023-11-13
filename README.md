@@ -1,6 +1,6 @@
 # Bang-iPhone-iOS-App
 
-See attachments in this branch for the required screenshot and video.
+See attachments in this branch for the required screenshot `route_result.PNG` and `problem2_and_demo.mov`.
 
 1. Is the current method of saving the classifier blocking to the tornado IOLoop? Justify your response.
 

@@ -16,8 +16,7 @@
 // to see what your public facing IP address is, the ip address can be used here
 
 // CHANGE THIS TO THE URL FOR YOUR LAPTOP
-let SERVER_URL = "http://10.213.66.154:8000" // change this for your server name!!!
-
+let SERVER_URL = "http://10.8.155.16:8000" // change this for your server name!!!
 
 import UIKit
 import CoreMotion
@@ -363,10 +362,12 @@ class ViewController: UIViewController, URLSessionDelegate {
                         }
                         else{ // no error we are aware of
                             let jsonDictionary = self.convertDataToDictionary(with: data)
-                            
-                            let labelResponse = jsonDictionary["prediction"]!
-                            print(labelResponse)
-                            self.displayLabelResponse(labelResponse as! String)
+                            if !(jsonDictionary == nil) {
+                                print(jsonDictionary)
+                                let labelResponse = jsonDictionary["prediction"]!
+                                print(labelResponse)
+                                self.displayLabelResponse(labelResponse as! String)
+                            }
 
                         }
                                                                     
